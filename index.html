@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Virtue Analytics">
+<title>tapojyoti.basu — Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fbf0df;
+    --cream-light:#fdf8ef;
+    --ink:#15161a;
+    --muted:#666158;
+    --coral:#f1633c;
+    --coral-light:#ff8a6b;
+    --amber:#f3b94a;
+    --pink:#ff8a75;
+    --teal:#56c9a5;
+    --purple:#b7a6f0;
+    --dark-bg:#14151b;
+    --dark-card:#1c1e26;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    margin:0;
+    letter-spacing:-0.02em;
+  }
+  section{scroll-margin-top:80px;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--coral);
+    font-size:0.85rem;
+    font-weight:500;
+    margin-bottom:14px;
+    display:block;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .section-pad{padding:96px 0;}
+  .section-title{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;margin-bottom:16px;}
+  .section-sub{font-style:italic;color:var(--muted);font-size:1.05rem;max-width:640px;margin-bottom:48px;}
+  .card{
+    background:var(--cream-light);
+    border:2px solid var(--ink);
+    border-radius:18px;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+
+  /* ---------- top ticker ---------- */
+  .topbar{
+    background:var(--ink);
+    color:#f4f0e8;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.82rem;
+    padding:9px 0;
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+  .dot-live{
+    width:8px;height:8px;border-radius:50%;background:#3ddc84;display:inline-block;
+    animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(1.25);}}
+  .topbar .sep{opacity:0.45;}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:60;
+    background:rgba(253,248,239,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--ink);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;}
+  .logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:8px;}
+  .logo .star{color:var(--coral);}
+  .navlinks{display:flex;align-items:center;gap:26px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;}
+  .navlinks button{color:var(--ink);text-decoration:none;background:none;border:none;padding:0;font:inherit;cursor:pointer;}
+  .navlinks button:hover{color:var(--coral);}
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:600;font-size:0.85rem;
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:10px 20px;
+    cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;
+    text-decoration:none;
+  }
+  .btn-black{background:var(--ink);color:var(--cream-light);}
+  .btn-white{background:var(--cream-light);color:var(--ink);}
+  @media(max-width:900px){.navlinks{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 8% 15%, rgba(255,138,117,0.55), transparent 40%),
+      radial-gradient(circle at 92% 10%, rgba(86,201,165,0.35), transparent 38%),
+      radial-gradient(circle at 85% 80%, rgba(243,185,74,0.3), transparent 45%),
+      var(--cream);
+    padding:115px 0 60px;
+  }
+  .hero .wrap{position:static;}
+  .hero-tag{font-family:'JetBrains Mono',monospace;font-size:0.95rem;margin-bottom:18px;display:block;position:relative;z-index:2;}
+  .hero h1{font-size:clamp(3rem,9vw,6.2rem);font-weight:900;line-height:1.05;margin:14px 0 26px;position:relative;z-index:1;}
+  .hl-yellow{background:var(--amber);padding:2px 14px;border-radius:14px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .dot-coral{display:inline-block;width:0.35em;height:0.35em;background:var(--coral);border-radius:50%;margin-left:0.15em;vertical-align:middle;}
+  .hero-sub{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.6vw,1.9rem);font-style:italic;font-weight:600;max-width:780px;margin-bottom:28px;}
+  .rotator{position:relative;display:inline-block;color:var(--coral);overflow:hidden;vertical-align:top;}
+  .rotator-text{
+    display:inline-block;
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .rotator-text.swap{opacity:0;transform:translateY(10px);}
+  .hero-body{max-width:640px;color:#3a382f;margin-bottom:36px;font-size:1.02rem;}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+
+  .float-tag{
+    position:absolute;
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:16px 18px 12px;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:0.8rem;
+    box-shadow:5px 5px 0 var(--ink);
+    text-align:center;
+    line-height:1.4;
+  }
+  .float-tag .emoji{font-size:1.3rem;display:block;margin-bottom:6px;}
+  .ft-1{top:36px;left:1%;background:var(--pink);transform:rotate(-8deg);width:140px;}
+  .ft-2{top:56px;right:5%;background:var(--teal);transform:rotate(6deg);width:150px;}
+  .ft-3{top:44%;right:1%;background:var(--purple);transform:rotate(-5deg);width:120px;}
+  .ft-4{bottom:16%;right:6%;background:var(--amber);transform:rotate(4deg);width:170px;}
+  .ft-5{bottom:10%;left:0%;background:var(--pink);transform:rotate(6deg);width:150px;}
+  @media(max-width:1100px){.float-tag{display:none;}}
+
+  /* ---------- marquee ---------- */
+  .marquee{background:var(--ink);color:#f4f0e8;overflow:hidden;padding:16px 0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);}
+  .marquee-track{display:flex;width:max-content;animation:scroll 28s linear infinite;}
+  .marquee-track span{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.3rem;
+    padding:0 28px;white-space:nowrap;display:flex;align-items:center;gap:10px;
+  }
+  .marquee-track span::before{content:"★";color:var(--coral);font-style:normal;}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* ---------- officially / unofficially ---------- */
+  .ou-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .ou-grid .card{padding:36px;}
+  .ou-grid .card.amber{background:var(--amber);}
+  .ou-grid h3{font-size:1.8rem;font-weight:800;margin-bottom:16px;}
+  .ou-grid p{margin:0 0 14px;}
+  .oi-list{list-style:none;margin:0;padding:0;}
+  .oi-list li{display:flex;gap:10px;padding:14px 0;border-bottom:1px dashed rgba(21,22,26,0.35);}
+  .oi-list li:last-child{border-bottom:none;}
+  .oi-list li::before{content:"→";color:var(--coral);font-weight:700;flex-shrink:0;}
+  @media(max-width:800px){.ou-grid{grid-template-columns:1fr;}}
+
+  /* ---------- journey (five verbs) ---------- */
+  .journey-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;}
+  .journey-card{
+    flex:1;min-width:170px;background:var(--cream-light);border:2px solid var(--ink);border-radius:16px;
+    padding:22px;margin-right:8px;box-shadow:5px 5px 0 var(--ink);
+  }
+  .journey-card.active{background:var(--pink);}
+  .journey-num{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted);margin-bottom:10px;display:block;}
+  .journey-card.active .journey-num{color:var(--ink);}
+  .journey-card h3{font-size:1.3rem;font-weight:800;margin-bottom:10px;}
+  .journey-card p{font-size:0.92rem;color:#3a382f;margin:0;}
+  .journey-arrow{align-self:center;font-size:1.4rem;color:var(--ink);margin:0 4px;flex-shrink:0;}
+  @media(max-width:1000px){.journey-row{flex-direction:column;}.journey-card{margin-right:0;margin-bottom:8px;}.journey-arrow{display:none;}}
+  blockquote.pull{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.25rem;color:#4a483f;
+    border:none;margin:44px 0 0;padding-left:36px;position:relative;max-width:900px;
+  }
+  blockquote.pull::before{content:"“";position:absolute;left:-6px;top:-14px;font-size:3rem;color:var(--coral);font-style:normal;}
+
+  /* ---------- impact grid ---------- */
+  .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .impact-card{padding:26px;position:relative;}
+  .impact-tag{
+    display:inline-block;background:var(--ink);color:var(--cream-light);
+    font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;
+    padding:5px 12px;border-radius:999px;letter-spacing:0.03em;
+  }
+  .impact-icon{position:absolute;top:24px;right:24px;font-size:1.2rem;}
+  .impact-card h3{font-size:1.5rem;font-weight:800;margin:16px 0 10px;}
+  .impact-card p{font-size:0.92rem;color:#4a483f;margin:0;}
+  @media(max-width:900px){.impact-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.impact-grid{grid-template-columns:1fr;}}
+
+  /* ---------- the work (tabs) ---------- */
+  .tabrow{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+  .tabbtn{
+    font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;
+    border:2px solid var(--ink);border-radius:999px;padding:10px 18px;background:var(--cream-light);
+    cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--ink);
+  }
+  .tabbtn.active{background:var(--ink);color:var(--cream-light);}
+  .work-card{padding:40px;}
+  .badge-chip{
+    display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--cream-light);
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:700;
+    padding:6px 14px;border-radius:999px;margin-bottom:18px;
+  }
+  .work-card h3{font-size:2rem;font-weight:800;margin-bottom:14px;}
+  .work-card>p.intro{font-style:italic;color:#4a483f;max-width:900px;margin-bottom:32px;}
+  .work-2col{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px;}
+  .work-item h4{color:var(--coral);font-size:1.1rem;font-weight:700;margin-bottom:8px;}
+  .work-item p{margin:0;color:#3a382f;font-size:0.95rem;}
+  .tab-empty{font-style:italic;color:var(--muted);}
+  @media(max-width:800px){.work-2col{grid-template-columns:1fr;}}
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+  .skills-grid .card{padding:28px;}
+  .skills-grid h3{color:var(--coral);font-size:1.2rem;font-weight:700;margin-bottom:18px;}
+  .skill-list{list-style:none;margin:0;padding:0;}
+  .skill-list li{padding:10px 0;border-bottom:1px dashed rgba(21,22,26,0.3);display:flex;gap:10px;font-size:0.95rem;}
+  .skill-list li:last-child{border-bottom:none;}
+  .skill-list li::before{content:"✦";color:var(--amber);flex-shrink:0;}
+  .pill-wrap{display:flex;flex-wrap:wrap;gap:10px;}
+  .pill{border:2px solid var(--ink);border-radius:999px;padding:7px 14px;font-family:'JetBrains Mono',monospace;font-size:0.82rem;}
+  @media(max-width:900px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---------- brain diagram ---------- */
+  .diagram{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 0;margin-bottom:26px;align-items:stretch;}
+  .diagram-cell{display:flex;align-items:flex-start;}
+  .diagram-card{
+    background:var(--cream-light);border:2px solid var(--ink);border-radius:16px;padding:20px;
+    box-shadow:5px 5px 0 var(--ink);flex:1;
+  }
+  .diagram-card.pink{background:var(--pink);}
+  .diagram-card.teal{background:var(--teal);}
+  .diagram-label{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:8px;display:block;}
+  .diagram-card.pink .diagram-label,.diagram-card.teal .diagram-label{color:rgba(21,22,26,0.6);}
+  .diagram-card p{margin:0;font-weight:700;font-size:1rem;}
+  .diagram-note{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--coral);font-style:italic;margin-top:10px;font-weight:400;}
+  .diagram-arrow{font-size:1.4rem;padding:0 12px;color:var(--ink);flex-shrink:0;align-self:center;}
+  @media(max-width:900px){.diagram{grid-template-columns:1fr;}.diagram-arrow{display:none;}}
+  .brain-notes{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .brain-notes .card{padding:26px;font-size:0.95rem;}
+  .brain-notes .card.purple{background:var(--purple);}
+  .brain-notes .card.amber{background:var(--amber);}
+  .brain-notes .eyebrow{color:var(--ink);opacity:0.6;}
+  @media(max-width:800px){.brain-notes{grid-template-columns:1fr;}}
+
+  /* ---------- PRD work-with-me ---------- */
+  .prd-card{padding:0;overflow:hidden;}
+  .prd-top{display:flex;justify-content:space-between;align-items:center;padding:14px 26px;border-bottom:2px solid var(--ink);font-family:'JetBrains Mono',monospace;font-size:0.78rem;flex-wrap:wrap;gap:10px;color:#4a483f;}
+  .status-pill{background:#c9f2d8;color:#0f6b3a;border-radius:999px;padding:3px 12px;font-weight:700;}
+  .prd-body{padding:32px 36px 36px;}
+  .prd-body h3{font-size:1.9rem;font-weight:800;margin-bottom:20px;}
+  .tldr-box{background:var(--amber);border:2px solid var(--ink);border-radius:14px;padding:18px 22px;margin-bottom:26px;font-size:0.95rem;}
+  .prd-tabrow{display:flex;gap:8px;border-bottom:2px solid var(--ink);margin-bottom:26px;flex-wrap:wrap;}
+  .prd-tab{font-family:'JetBrains Mono',monospace;font-size:0.82rem;font-weight:600;padding:10px 16px;border:none;background:transparent;cursor:pointer;color:var(--ink);border-radius:8px 8px 0 0;}
+  .prd-tab.active{background:var(--ink);color:var(--cream-light);}
+  .prd-section-num{color:var(--coral);font-weight:800;}
+  .prd-body h4{font-size:1.3rem;font-weight:800;margin:4px 0 14px;}
+  .prd-2col{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:16px;}
+  .prd-2col ul{list-style:none;margin:0;padding:0;}
+  .prd-2col li{padding:6px 0;font-size:0.95rem;}
+  .prd-2col li::before{content:"• ";color:var(--coral);font-weight:700;}
+  @media(max-width:700px){.prd-2col{grid-template-columns:1fr;}}
+
+  /* ---------- SQL fun facts (dark) ---------- */
+  .dark-section{background:var(--dark-bg);color:#f2efe6;}
+  .dark-section .eyebrow{color:var(--amber);}
+  .dark-section .section-sub{color:#9d9a90;}
+  .code-card{background:#0e0f13;border:2px solid #33353d;border-radius:16px;overflow:hidden;}
+  .code-top{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid #33353d;}
+  .code-tabs{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;}
+  .code-tabs span{padding:6px 4px;color:#8a8880;cursor:pointer;}
+  .code-tabs span.active{color:#f2efe6;border-bottom:2px solid var(--amber);}
+  .run-btn{
+    font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:700;background:#173d2c;color:#4fdc93;
+    border:1px solid #2b6e4d;border-radius:8px;padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;
+  }
+  .code-status{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#8a8880;}
+  pre.sql{margin:0;padding:22px 24px;font-family:'JetBrains Mono',monospace;font-size:0.88rem;line-height:1.7;overflow-x:auto;}
+  .sql-line{color:#c9c6bc;}
+  .k{color:#f1633c;}
+  .s{color:#4fdc93;}
+  .c{color:#6b6e76;font-style:italic;}
+  .results-row{display:none;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:0.88rem;color:#c9c6bc;}
+  .results-row.show{display:block;}
+
+  /* ---------- brain-teaser quiz ---------- */
+  .quiz-progress{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+  .progress-bar{flex:1;height:6px;background:rgba(21,22,26,0.15);border-radius:999px;overflow:hidden;}
+  .progress-fill{width:20%;height:100%;background:var(--coral);}
+  .quiz-card{padding:32px;}
+  .quiz-tag{font-family:'JetBrains Mono',monospace;color:var(--coral);font-size:0.78rem;font-weight:700;display:block;margin-bottom:12px;}
+  .quiz-card h3{font-size:1.5rem;font-weight:700;margin-bottom:26px;line-height:1.35;}
+  .quiz-opt{
+    display:flex;align-items:center;gap:14px;border:2px solid var(--ink);border-radius:12px;
+    padding:14px 18px;margin-bottom:12px;cursor:pointer;background:var(--cream-light);font-size:0.98rem;
+    transition:background .15s;
+  }
+  .quiz-opt:hover{background:#f4ead9;}
+  .quiz-opt.selected{background:var(--amber);}
+  .opt-letter{
+    width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--ink);color:var(--cream-light);
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+
+  /* ---------- personal projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .proj-card{
+    border:2px dashed var(--ink);border-radius:16px;padding:24px;position:relative;background:var(--cream-light);
+  }
+  .proj-status{
+    position:absolute;top:-14px;right:18px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:700;
+    border:2px solid var(--ink);border-radius:999px;padding:4px 12px;background:var(--cream);
+  }
+  .proj-card h3{font-size:1.25rem;font-weight:800;margin-bottom:6px;}
+  .proj-cat{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--coral);font-weight:700;display:block;margin-bottom:12px;}
+  .proj-card p{margin:0;font-size:0.92rem;color:#4a483f;}
+  @media(max-width:900px){.proj-grid{grid-template-columns:1fr;}}
+
+  /* ---------- mountains ---------- */
+  .mtn-scene{
+    position:relative;height:610px;overflow:hidden;
+    background:linear-gradient(180deg,#f7cda2 0%,#e2b391 22%,#9fa9ae 52%,#77838d 78%,#4c5760 100%);
+  }
+  .mtn-layer{position:absolute;bottom:0;left:0;width:100%;}
+  .mtn-l1{height:58%;background:#647581;clip-path:polygon(0 100%,0 55%,10% 35%,22% 58%,34% 25%,48% 52%,60% 20%,74% 50%,86% 28%,100% 48%,100% 100%);}
+  .mtn-l2{height:42%;background:#3d4a54;clip-path:polygon(0 100%,0 65%,14% 40%,28% 62%,45% 30%,58% 58%,72% 34%,88% 60%,100% 42%,100% 100%);}
+  .mtn-l3{height:20%;background:#28323b;}
+  .trees{position:absolute;bottom:8%;left:0;width:100%;display:flex;justify-content:space-around;padding:0 6%;}
+  .tree{width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:22px solid #1c242b;}
+  .mtn-content{position:relative;z-index:5;padding-top:64px;text-align:center;color:var(--ink);}
+  .mtn-content .eyebrow{justify-content:center;display:flex;}
+  .mtn-content h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;margin-bottom:18px;}
+  .mtn-content .section-sub{margin:0 auto 6px;text-align:center;}
+  .mtn-content .note{font-size:0.85rem;font-style:italic;color:#3a382f;margin-bottom:34px;}
+  .glass-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:960px;margin:0 auto;}
+  .glass-card{
+    background:rgba(255,255,255,0.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.6);
+    border-radius:14px;padding:20px;width:230px;font-size:0.88rem;color:#20242a;text-align:left;
+  }
+  .glass-card .emoji{font-size:1.3rem;margin-bottom:8px;display:block;}
+  .mtn-quote{font-family:'Fraunces',serif;font-style:italic;text-align:center;color:rgba(253,248,239,0.85);margin-top:26px;font-size:0.9rem;position:relative;z-index:6;}
+  @media(max-width:800px){.mtn-scene{height:auto;padding-bottom:40px;}}
+
+  /* ---------- say hi ---------- */
+  .sayhi-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;}
+  .sayhi-h2{font-size:clamp(2rem,4.4vw,3rem);font-weight:800;color:#f2efe6;line-height:1.15;margin-bottom:20px;}
+  .hl-strike{background:var(--coral);color:var(--ink);padding:2px 10px;border-radius:6px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+  .contact-list{margin-top:26px;}
+  .contact-item{border-left:3px solid var(--coral);padding:6px 0 6px 18px;margin-bottom:18px;}
+  .contact-item.blue{border-color:#5aa8ff;}
+  .contact-item.green{border-color:#4fdc93;}
+  .contact-item .clabel{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#9d9a90;display:block;margin-bottom:4px;letter-spacing:0.04em;}
+  .contact-item .cval{font-weight:700;font-size:1.05rem;color:#f2efe6;}
+  .blob-wrap{position:relative;height:340px;display:flex;align-items:center;justify-content:center;}
+  .blob{
+    position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(50px);
+    background:radial-gradient(circle at 30% 30%, var(--coral), var(--amber) 70%);
+    opacity:0.7;
+  }
+  .emoji-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:34px;font-size:2rem;}
+  footer{border-top:1px solid #2c2d34;padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#8a8880;}
+  @media(max-width:800px){.sayhi-inner{grid-template-columns:1fr;}}
+
+  /* ---------- like button ---------- */
+  .like-btn{
+    position:fixed;bottom:24px;right:24px;z-index:1000;
+    background:var(--cream-light);border:2px solid var(--ink);border-radius:999px;
+    padding:12px 20px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:0.85rem;
+    display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);
+    color:var(--ink);
+  }
+  .like-btn .heart{transition:transform .15s;}
+  .like-btn.liked .heart{transform:scale(1.25);}
+
+  /* easter egg toast */
+  .egg-toast{
+    position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-20px);
+    background:var(--ink);color:#f4f0e8;font-family:'JetBrains Mono',monospace;font-size:0.9rem;
+    padding:14px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:all .3s;z-index:2000;
+    border:2px solid var(--coral);
+  }
+  .egg-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="dot-live"></span>
+      <span>Quietly building &amp; protecting things behind the product</span>
+      <span class="sep">·</span>
+      <span>📍 New Delhi</span>
+      <span class="sep">·</span>
+      <span>🍴 Veg</span>
+      <span class="sep">·</span>
+      <span>📺 Modern Family loyalist</span>
+    </div>
+  </div>
+
+  <nav>
+    <div class="wrap">
+      <div class="logo"><span class="star">✦</span> tapojyoti.basu</div>
+      <div class="navlinks">
+        <button type="button" data-scroll="tldr">tl;dr</button>
+        <button type="button" data-scroll="journey">journey</button>
+        <button type="button" data-scroll="impact">impact</button>
+        <button type="button" data-scroll="the-work">the work</button>
+        <button type="button" data-scroll="skills">skills</button>
+        <button type="button" data-scroll="brain">the brain</button>
+        <button type="button" data-scroll="work-with-me">work-with-me</button>
+        <button type="button" data-scroll="fun-facts">fun facts</button>
+        <button type="button" data-scroll="mountains">mountains</button>
+      </div>
+      <button type="button" class="btn btn-black" data-scroll="say-hi">say hi →</button>
+    </div>
+  </nav>
+
+  <section class="hero" id="tldr">
+    <div class="wrap">
+      <div class="float-tag ft-1"><span class="emoji">🎙️</span>PRDS &gt; VIBES</div>
+      <div class="float-tag ft-2"><span class="emoji">🛡️</span>BREAK IT · BUILD IT</div>
+      <div class="float-tag ft-3"><span class="emoji">☕</span>VEG · ALWAYS</div>
+      <div class="float-tag ft-4"><span class="emoji">🏔️</span>MOUNTAINS &gt; EVERYTHING</div>
+      <div class="float-tag ft-5"><span class="emoji">📺</span>MODERN FAMILY FAN</div>
+
+      <span class="hero-tag mono">👋 hi, i'm</span>
+      <h1><span class="hl-yellow">Tapojyoti</span> Basu<span class="dot-coral"></span></h1>
+      <p class="hero-sub">I build products that <span class="rotator"><span class="rotator-text" id="rotatorText">people actually use.</span></span></p>
+      <p class="hero-body">Product Manager with <strong>7+ years</strong> across telecom, fintech, and high-growth tech. I work on the messy middle — turning ambiguous problems into shipped products. The surfaces have varied: customer-facing apps, internal platforms, data systems, and (lately) the quieter kind of work that lives underneath all of them. Both my parents spent their careers in software, which is probably why business, data, and engineering have always felt like languages I could move between.</p>
+      <div class="hero-btns">
+        <button type="button" class="btn btn-black" data-scroll="journey">start at the journey →</button>
+        <button type="button" class="btn btn-white" data-scroll="mountains">skip to the mountains 🏔️</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>measure it</span><span>protect it</span><span>"in layman terms..."</span><span>DMs &gt; email &gt; phone</span><span>deadlines mean deadlines</span><span>break it</span><span>build it</span><span>scale it</span>
+      <span>measure it</span><span>protect it</span><span>"in layman terms..."</span><span>DMs &gt; email &gt; phone</span><span>deadlines mean deadlines</span><span>break it</span><span>build it</span><span>scale it</span>
+    </div>
+  </div>
+
+  <section class="section-pad">
+    <div class="wrap">
+      <span class="eyebrow">// what i do</span>
+      <h2 class="section-title">Officially &amp; <em>un</em>officially.</h2>
+      <div class="ou-grid">
+        <div class="card">
+          <span class="eyebrow">OFFICIALLY</span>
+          <h3>Product Manager.</h3>
+          <p>In practice, my job is to take ambiguous, sometimes uncomfortable problems and turn them into products with owners, dates, and a real definition of "done."</p>
+          <p>Lately, the kind of work that lives quietly behind the product — where you measure success less in things that went right, and more in things that didn't go wrong.</p>
+        </div>
+        <div class="card amber">
+          <span class="eyebrow" style="color:var(--ink);">UNOFFICIALLY, I</span>
+          <ul class="oi-list">
+            <li>Translate between business, data, and engineering — sometimes inside the same sentence.</li>
+            <li>Reach for the data without making it feel like the data is in charge.</li>
+            <li>Turn fuzzy "we should..." energy into something with owners and dates.</li>
+            <li>Catch edge cases before they file themselves as incidents.</li>
+            <li>Care more about the metric that compounds than the one that looks good in a deck.</li>
+            <li>Take growth seriously enough to defend it from people trying to abuse it.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="journey" style="padding-top:0;">
+    <div class="wrap">
+      <span class="eyebrow">// the journey</span>
+      <h2 class="section-title">My scope, in five verbs.</h2>
+      <p class="section-sub">Each one was a chapter. Each one made the next one possible.</p>
+      <div class="journey-row">
+        <div class="journey-card active"><span class="journey-num">01</span><h3>Break it.</h3><p>QA and testing. The phase where I learned, in detail, how things actually fail.</p></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-card"><span class="journey-num">02</span><h3>Build it.</h3><p>Stepping into PM. Not writing code — owning whether the product actually works for people I'd never meet.</p></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-card"><span class="journey-num">03</span><h3>Scale it.</h3><p>A customer base in the hundreds of millions, across 14 countries. Same craft, much bigger blast radius.</p></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-card"><span class="journey-num">04</span><h3>Measure it.</h3><p>Building the systems that decide what "working" even means. Harder than it sounds.</p></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-card"><span class="journey-num">05</span><h3>Protect it.</h3><p>The work behind the work. Quieter, less visible, easier to underrate — but where the leverage compounds.</p></div>
+      </div>
+      <blockquote class="pull">The craft hasn't really changed across these five — product judgment, structured thinking, a stubborn relationship with data. What's changed is the size of the thing I'm trying to make better.</blockquote>
+    </div>
+  </section>
+
+  <section class="section-pad" id="impact">
+    <div class="wrap">
+      <span class="eyebrow">// impact</span>
+      <h2 class="section-title">What the work has moved.</h2>
+      <p class="section-sub">Real outcomes, in the safe-to-share version. Exact figures and the products behind them live in conversation (and on a CV).</p>
+      <div class="impact-grid">
+        <div class="card impact-card"><span class="impact-tag">GROWTH</span><span class="impact-icon">↗️</span><h3>Double-digit lift</h3><p>In reactivation of users we'd otherwise lost — through sharper segmentation and smarter targeting on external platforms.</p></div>
+        <div class="card impact-card"><span class="impact-tag">SAVINGS</span><span class="impact-icon">💲</span><h3>Six-figure / month</h3><p>In monthly ad spend, stopped going to the people we'd already won or couldn't reach. Better targeting precision did the work.</p></div>
+        <div class="card impact-card"><span class="impact-tag">CONVERSION</span><span class="impact-icon">↗️</span><h3>Double-digit CTR lift</h3><p>On a flagship wallet surface — through tighter segment precision and a sharper targeting workflow.</p></div>
+        <div class="card impact-card"><span class="impact-tag">PLATFORM</span><span class="impact-icon">🧪</span><h3>Hundreds</h3><p>Of org-wide experiments now run on top of a metrics platform I led from 0 → 1 — the spine of how teams define and measure "success."</p></div>
+        <div class="card impact-card"><span class="impact-tag">SCALE</span><span class="impact-icon">🌍</span><h3>Hundreds of millions</h3><p>Of customers served across multiple markets and business units, on platforms I owned or co-owned end to end.</p></div>
+        <div class="card impact-card"><span class="impact-tag">EFFICIENCY</span><span class="impact-icon">↘️</span><h3>Over a quarter faster</h3><p>Activation time, after rebuilding the onboarding journey end to end and stripping out a stack of manual steps.</p></div>
+        <div class="card impact-card"><span class="impact-tag">ACQUISITION</span><span class="impact-icon">↗️</span><h3>Double-digit lift</h3><p>In customer acquisition by launching an offline version of a critical onboarding flow — opening up markets connectivity couldn't reach.</p></div>
+        <div class="card impact-card"><span class="impact-tag">RELIABILITY</span><span class="impact-icon">🛡️</span><h3>~ a fifth less disruption</h3><p>From upstream data changes on downstream pipelines, after shipping a process change in a couple of months.</p></div>
+        <div class="card impact-card"><span class="impact-tag">COST</span><span class="impact-icon">↘️</span><h3>Real engineering time back</h3><p>By spotting duplicated work across consumer apps and pushing for a shared layer of common API capabilities.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="the-work">
+    <div class="wrap">
+      <span class="eyebrow">// the work</span>
+      <h2 class="section-title">What I've actually shipped.</h2>
+      <p class="section-sub">Grouped by what I built, not where. Specific numbers live in a longer conversation — this is the friendlier version.</p>
+      <div class="tabrow">
+        <button class="tabbtn active" data-tab="focus">⚡ current focus</button>
+        <button class="tabbtn" data-tab="capabilities">capabilities</button>
+        <button class="tabbtn" data-tab="recognition">recognition</button>
+        <button class="tabbtn" data-tab="where">where this happened</button>
+      </div>
+      <div class="card work-card" id="workPane-focus">
+        <span class="badge-chip">⚡ current chapter</span>
+        <h3>Quiet work, real stakes.</h3>
+        <p class="intro">Lately I'm focused on the kind of product work that doesn't get a launch tweet — the systems that live behind the experience and only get noticed when they're not working. A few things I've come to believe doing this kind of work:</p>
+        <div class="work-2col">
+          <div class="work-item"><h4>Signal over noise.</h4><p>Most of what I do right now lives behind the product, not in front of it. The work is about reading patterns in large amounts of behavioural data — figuring out which patterns are signal, which are noise, and which ones quietly warn you about something before it becomes a problem.</p></div>
+          <div class="work-item"><h4>Decisions, not just dashboards.</h4><p>Insights are interesting; decisions are what move the metric. A lot of the job is making sure the signals we generate flow into the systems and people that actually act on them — instead of sitting on a dashboard nobody opens.</p></div>
+          <div class="work-item"><h4>Tradeoffs you can't optimise cleanly.</h4><p>This kind of work is full of tradeoffs without clean answers — speed vs. precision, automation vs. judgment, the cost of being wrong in one direction vs. the other. The job is to name the tradeoff honestly, take a position, and revisit it when the world changes.</p></div>
+          <div class="work-item"><h4>Two timescales, at once.</h4><p>The systems improve incrementally, but have to hold up in real time. So I'm always thinking in two timescales — what we ship this sprint, and what we'll wish we'd built six months ago.</p></div>
+        </div>
+      </div>
+      <div class="card work-card" id="workPane-capabilities" style="display:none;"><p class="tab-empty">More on capabilities available on request — happy to walk through specifics in conversation.</p></div>
+      <div class="card work-card" id="workPane-recognition" style="display:none;"><p class="tab-empty">Recognition details shared happily, one-on-one — ask away.</p></div>
+      <div class="card work-card" id="workPane-where" style="display:none;"><p class="tab-empty">Telecom, fintech, and high-growth tech, across markets — happy to go deeper live.</p></div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="skills" style="padding-top:0;">
+    <div class="wrap">
+      <span class="eyebrow">// skills &amp; toolkit</span>
+      <h2 class="section-title">What I bring to the table.</h2>
+      <p class="section-sub">The shape of the muscle, plus the tools I reach for.</p>
+      <div class="skills-grid">
+        <div class="card">
+          <h3>Product &amp; Strategy</h3>
+          <ul class="skill-list">
+            <li>Strategic product roadmapping</li>
+            <li>0 → 1 product development &amp; launch</li>
+            <li>PRDs, OKRs &amp; success metrics</li>
+            <li>Data-driven decision making</li>
+            <li>System migration &amp; modernization</li>
+            <li>Market &amp; competitive research</li>
+            <li>User feedback analysis</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Leadership &amp; Collaboration</h3>
+          <ul class="skill-list">
+            <li>Cross-functional team management</li>
+            <li>Engineering partnership</li>
+            <li>Design partnership</li>
+            <li>Stakeholder communication</li>
+            <li>Experimentation &amp; A/B testing</li>
+            <li>Conflict resolution &amp; alignment</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Stack &amp; Tools</h3>
+          <div class="pill-wrap">
+            <span class="pill">BigQuery</span>
+            <span class="pill">Oracle SQL</span>
+            <span class="pill">MongoDB</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">Google Analytics</span>
+            <span class="pill">JIRA</span>
+            <span class="pill">Confluence</span>
+            <span class="pill">Excel</span>
+            <span class="pill">A/B Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="brain">
+    <div class="wrap">
+      <span class="eyebrow">// hld · the brain</span>
+      <h2 class="section-title">How I think — as an actual block diagram.</h2>
+      <p class="section-sub">Because the best way to show how a PM thinks is a system diagram.</p>
+      <div class="diagram">
+        <div class="diagram-cell"><div class="diagram-card pink"><span class="diagram-label">INPUT</span><p>Ambiguous, half-baked problem</p></div></div>
+        <div class="diagram-cell"><span class="diagram-arrow">→</span><div class="diagram-card"><span class="diagram-label">STEP 1</span><p>Break it down small enough to explain in <em>layman terms</em></p><span class="diagram-note">↳ side effect: clarity exposes the gaps. that's useful.</span></div></div>
+        <div class="diagram-cell"><span class="diagram-arrow">→</span><div class="diagram-card"><span class="diagram-label">STEP 2</span><p>Hunt edge cases <em>before</em> they file themselves as incidents</p></div></div>
+
+        <div class="diagram-cell"><div class="diagram-card"><span class="diagram-label">STEP 3</span><p>Convert "we should..." → "here's the plan"</p></div></div>
+        <div class="diagram-cell"><span class="diagram-arrow">→</span><div class="diagram-card"><span class="diagram-label">STEP 4</span><p>Pick the metric. The right one. Not the easy one.</p></div></div>
+        <div class="diagram-cell"><span class="diagram-arrow">→</span><div class="diagram-card teal"><span class="diagram-label">OUTPUT</span><p>PRD + roadmap + a calmly relentless follow-up</p></div></div>
+      </div>
+      <div class="brain-notes">
+        <div class="card purple">
+          <span class="eyebrow">// the teacher who never quite left</span>
+          <p>At some point in school I wanted to be a teacher, and I never fully let that go. It shows up in meetings, in the way I write PRDs, in the unconscious "okay, in plain language..." I reach for before explaining something. Explaining things forces you to actually understand them — and the places where the explanation gets clumsy are usually where the real product work is hiding.</p>
+        </div>
+        <div class="card amber">
+          <span class="eyebrow">// a long memory for kindness</span>
+          <p>I notice when people are generous with their time. Guidance compounds in a way money doesn't, and the people who've taken time to teach me something stay bookmarked in my head for a long time. I try to be that person for the people working alongside me — sometimes formally, mostly not.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="work-with-me">
+    <div class="wrap">
+      <div class="card prd-card">
+        <div class="prd-top">
+          <span>📄 docs / people / <strong>tapojyoti-basu.prd</strong></span>
+          <span>Owner: <strong>tapojyoti.basu</strong> &nbsp; Status: <span class="status-pill">Active</span> &nbsp; Last edited: just now</span>
+        </div>
+        <div class="prd-body">
+          <h3>PRD: How to work with me.</h3>
+          <div class="tldr-box"><strong>tl;dr</strong> — clarity is the gift. Tell me what, why, how, and how urgent. Disagreement is welcome; I prefer a sharp debate to a polite consensus. DMs land best. At 11pm you're competing with sleep or a Modern Family rewatch, and one of them is winning.</div>
+          <div class="prd-tabrow">
+            <button class="prd-tab active" data-prdtab="goals">§1 problem &amp; goals</button>
+            <button class="prd-tab" data-prdtab="operating">§2 operating spec</button>
+            <button class="prd-tab" data-prdtab="collab">§3 collaboration</button>
+            <button class="prd-tab" data-prdtab="metrics">§4 metrics &amp; me</button>
+          </div>
+          <div id="prdPane-goals">
+            <h4><span class="prd-section-num">1.</span> Problem &amp; goals</h4>
+            <span class="eyebrow">// problem statement</span>
+            <p>Working with someone new always has a learning curve. This doc shortens it.</p>
+            <div class="prd-2col">
+              <div>
+                <span class="eyebrow" style="margin-bottom:8px;">// goals</span>
+                <ul>
+                  <li>Tell you how to reach me effectively.</li>
+                  <li>Set expectations on hours, channels, debate.</li>
+                  <li>Make month one of working together feel a bit like month three.</li>
+                </ul>
+              </div>
+              <div>
+                <span class="eyebrow" style="margin-bottom:8px;">// non-goals</span>
+                <ul>
+                  <li>Being available 24/7.</li>
+                  <li>Polite consensus instead of real debate.</li>
+                  <li>Replacing actual conversation.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="prdPane-operating" style="display:none;"><p class="tab-empty">Operating spec — hours, channels, and response norms. Ask and I'll spell it out.</p></div>
+          <div id="prdPane-collab" style="display:none;"><p class="tab-empty">Collaboration style — happy to talk through this directly.</p></div>
+          <div id="prdPane-metrics" style="display:none;"><p class="tab-empty">How I measure a good working relationship — a conversation, not a slide.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad dark-section" id="fun-facts">
+    <div class="wrap">
+      <span class="eyebrow">// select * from tapojyoti_basu</span>
+      <h2 class="section-title" style="color:#f2efe6;">The fun facts, in SQL.</h2>
+      <p class="section-sub">Because if you have a hammer, everything looks like a nail. And mine is data.</p>
+      <div class="code-card">
+        <div class="code-top">
+          <div class="code-tabs">
+            <span class="active" data-codetab="sql">tapojyoti_facts.sql</span>
+            <span data-codetab="results">results</span>
+          </div>
+          <button class="run-btn" id="runQueryBtn">▶ run query</button>
+          <span class="code-status" id="codeStatus">ready</span>
+        </div>
+        <pre class="sql" id="sqlPane"><span class="sql-line"><span class="k">SELECT</span> *</span>
+<span class="sql-line"><span class="k">FROM</span>   tapojyoti_basu</span>
+<span class="sql-line"><span class="k">WHERE</span>  1 = 1</span>
+<span class="sql-line">  <span class="k">AND</span> home_base      = <span class="s">'New Delhi'</span>      <span class="c">-- born &amp; brought up here</span></span>
+<span class="sql-line">  <span class="k">AND</span> school         = <span class="s">"The Mother's International"</span></span>
+<span class="sql-line">  <span class="k">AND</span> parents        = [<span class="s">'IT engineer'</span>, <span class="s">'IT engineer'</span>]</span>
+<span class="sql-line">                                        <span class="c">-- the bug was inherited</span></span>
+<span class="sql-line">  <span class="k">AND</span> food           = <span class="s">'veg'</span>           <span class="c">-- non-negotiable</span></span>
+<span class="sql-line">  <span class="k">AND</span> comfort_show   = <span class="s">'Modern Family'</span> <span class="c">-- objectively undefeated</span></span>
+<span class="sql-line">  <span class="k">AND</span> transport_pref <span class="k">IN</span> (<span class="s">'teleportation (if real)'</span>)</span>
+<span class="sql-line">                                        <span class="c">-- buses/trains/planes: 3/10</span></span>
+<span class="sql-line">  <span class="k">AND</span> weekend_plan   <span class="k">LIKE</span> <span class="s">'%mountains%'</span></span>
+<span class="sql-line">  <span class="k">AND</span> recharges_with <span class="k">IN</span> (<span class="s">'treks'</span>, <span class="s">'peaceful walks'</span>,</span>
+<span class="sql-line">                       <span class="s">'local food'</span>, <span class="s">'doing nothing'</span>)</span>
+<span class="sql-line">  <span class="k">AND</span> past_lives     = [<span class="s">'national-level footballer (U-14)'</span>,</span>
+<span class="sql-line">                       <span class="s">'almost a teacher'</span>]</span>
+<span class="sql-line">  <span class="k">AND</span> if_not_PM      <span class="k">THEN</span> (<span class="s">'eating something amazing'</span>,</span>
+<span class="sql-line">                       <span class="s">'sleeping peacefully'</span>,</span>
+<span class="sql-line">                       <span class="s">'teaching'</span>)</span>
+<span class="sql-line">  <span class="k">AND</span> motivated_by   = [<span class="s">'growth'</span>, <span class="s">'real impact'</span>,</span>
+<span class="sql-line">                       <span class="s">'becoming better than yesterday'</span>];</span></pre>
+        <div class="results-row" id="resultsPane">1 row returned — record: <strong>tapojyoti_basu</strong> · match: <strong>✅ all conditions satisfied</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="wrap">
+      <span class="eyebrow">// mini game</span>
+      <h2 class="section-title">The PM brain-teaser.</h2>
+      <p class="section-sub">5 scenarios. No googling. Be honest. Title at the end depends on it.</p>
+      <div class="quiz-progress">
+        <span>question 1 / 5</span>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+      </div>
+      <div class="card quiz-card">
+        <span class="quiz-tag">scenario</span>
+        <h3>Churn is up 15% this month. The data team blames seasonality. Marketing blames the new pricing. What do you do first?</h3>
+        <div class="quiz-opt" data-opt="A"><span class="opt-letter">A</span> Email finance to roll back the price change.</div>
+        <div class="quiz-opt" data-opt="B"><span class="opt-letter">B</span> Cut the data by cohort, channel, and segment before assigning blame.</div>
+        <div class="quiz-opt" data-opt="C"><span class="opt-letter">C</span> Ship a retention campaign immediately. Move fast.</div>
+        <div class="quiz-opt" data-opt="D"><span class="opt-letter">D</span> Schedule an offsite to align stakeholders.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" style="padding-top:0;">
+    <div class="wrap">
+      <span class="eyebrow">// quietly cooking</span>
+      <h2 class="section-title">Personal projects.</h2>
+      <p class="section-sub">A few things I'm tinkering with off the clock. More when they're ready to be looked at.</p>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <span class="proj-status">🚧 in progress</span>
+          <h3>An AI project</h3>
+          <span class="proj-cat">LEARNING &amp; BUILDING</span>
+          <p>Quietly figuring out where AI actually earns its keep in real PM work — not the deck-decoration kind. More once it's ready to be looked at.</p>
+        </div>
+        <div class="proj-card">
+          <span class="proj-status">✍️ drafting</span>
+          <h3>Layman's Lab</h3>
+          <span class="proj-cat">WRITING</span>
+          <p>Short pieces trying to explain complex product &amp; data systems in language a smart 12-year-old would follow. Working title — opinions welcome.</p>
+        </div>
+        <div class="proj-card">
+          <span class="proj-status">🔜 soon</span>
+          <h3>Something else</h3>
+          <span class="proj-cat">TBD</span>
+          <p>An idea that's still figuring out what it wants to be. I'll let it cook.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mountains">
+    <div class="mtn-scene">
+      <div class="mtn-layer mtn-l1"></div>
+      <div class="mtn-layer mtn-l2"></div>
+      <div class="mtn-layer mtn-l3"></div>
+      <div class="trees">
+        <span class="tree"></span><span class="tree"></span><span class="tree"></span><span class="tree"></span><span class="tree"></span>
+      </div>
+      <div class="mtn-content wrap">
+        <span class="eyebrow">// why i do this</span>
+        <h2>Mountains, over almost everything.</h2>
+        <p class="section-sub">The eventual plan is to solve hard product problems from a small place in the hills — a window, a river somewhere in earshot, no calendar pinging.</p>
+        <p class="note">Until then, I'll keep shipping good work and saving up trips to Himachal.</p>
+        <div class="glass-row">
+          <div class="glass-card"><span class="emoji">🏕️</span>Off-beat places, mostly. Treks, slow walks, whatever the local kitchen is making. The point is the place, not the photograph.</div>
+          <div class="glass-card"><span class="emoji">🚂</span>Buses, trains, planes — tolerated, not enjoyed. Drop me at the destination, please. If anyone ever gets teleportation working, I'm in early.</div>
+          <div class="glass-card"><span class="emoji">🧘</span>Sometimes I do absolutely nothing on purpose. The hardest part of that is resisting the urge to optimise it.</div>
+        </div>
+        <p class="mtn-quote">— from somewhere in my head, usually Himachal</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad dark-section" id="say-hi">
+    <div class="wrap sayhi-inner">
+      <div>
+        <span class="eyebrow">// say hi</span>
+        <h2 class="sayhi-h2">If you made it this far,<br><span class="hl-strike">just say hi.</span></h2>
+        <p class="section-sub">Best for: food plans, a good product debate, a Modern Family hot take, or a hello with no agenda.</p>
+        <div class="contact-list">
+          <div class="contact-item blue"><span class="clabel">EMAIL</span><span class="cval">tapojyoti.basu2022@gmail.com</span></div>
+          <div class="contact-item"><span class="clabel">LINKEDIN</span><span class="cval">linkedin.com/in/tapojyotibasu ↗</span></div>
+          <div class="contact-item green"><span class="clabel">BASED IN</span><span class="cval">New Delhi, India <span class="mono" style="text-transform:lowercase;">in</span> (mentally in Himachal)</span></div>
+        </div>
+      </div>
+      <div class="blob-wrap">
+        <div class="blob"></div>
+        <div class="emoji-grid">
+          <span>🏔️</span><span>🍜</span><span>📊</span>
+          <span>🛡️</span><span>📺</span><span>✨</span>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <footer>
+        <span>© 2026 Tapojyoti Basu</span>
+        <span>psst — try ↑↑↓↓← for a small surprise &nbsp; ↑↑↓↓←</span>
+      </footer>
+    </div>
+  </section>
+
+  <button class="like-btn" id="likeBtn"><span class="heart">❤️</span> like this</button>
+  <div class="egg-toast" id="eggToast">🎉 you found it — hi, fellow curious person.</div>
+
+<script>
+  // smooth in-page navigation (nav links, hero CTAs, "say hi" button)
+  document.querySelectorAll('[data-scroll]').forEach(link=>{
+    link.addEventListener('click',(e)=>{
+      const id = link.getAttribute('data-scroll');
+      const target = document.getElementById(id);
+      if(!target) return;
+      e.preventDefault();
+      const navEl = document.querySelector('nav');
+      const offset = (navEl ? navEl.offsetHeight : 0) + 16;
+      const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({top: Math.max(targetY,0), behavior:'smooth'});
+    });
+  });
+
+  // tab switching: the work
+  document.querySelectorAll('.tabrow .tabbtn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tabrow .tabbtn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      ['focus','capabilities','recognition','where'].forEach(t=>{
+        document.getElementById('workPane-'+t).style.display = (t===btn.dataset.tab)?'block':'none';
+      });
+    });
+  });
+
+  // tab switching: PRD
+  document.querySelectorAll('.prd-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.prd-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      ['goals','operating','collab','metrics'].forEach(t=>{
+        document.getElementById('prdPane-'+t).style.display = (t===btn.dataset.prdtab)?'block':'none';
+      });
+    });
+  });
+
+  // code tabs
+  document.querySelectorAll('.code-tabs span').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.code-tabs span').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const isSql = tab.dataset.codetab==='sql';
+      document.getElementById('sqlPane').style.display = isSql?'block':'none';
+      document.getElementById('resultsPane').classList.toggle('show', !isSql);
+    });
+  });
+
+  // run query button
+  document.getElementById('runQueryBtn').addEventListener('click',()=>{
+    const status = document.getElementById('codeStatus');
+    status.textContent='running…';
+    setTimeout(()=>{
+      status.textContent='ready';
+      document.querySelectorAll('.code-tabs span').forEach(t=>t.classList.remove('active'));
+      document.querySelector('[data-codetab="results"]').classList.add('active');
+      document.getElementById('sqlPane').style.display='none';
+      document.getElementById('resultsPane').classList.add('show');
+    },600);
+  });
+
+  // hero rotating phrases
+  const heroPhrases = ['people actually use.','solve real problems.','scale to millions.','make me proud.'];
+  let heroPhraseIdx = 0;
+  const rotatorEl = document.getElementById('rotatorText');
+  setInterval(()=>{
+    rotatorEl.classList.add('swap');
+    setTimeout(()=>{
+      heroPhraseIdx = (heroPhraseIdx + 1) % heroPhrases.length;
+      rotatorEl.textContent = heroPhrases[heroPhraseIdx];
+      rotatorEl.classList.remove('swap');
+    }, 350);
+  }, 3000);
+
+  // quiz option select
+  document.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected'));
+      opt.classList.add('selected');
+    });
+  });
+
+  // like button
+  const likeBtn = document.getElementById('likeBtn');
+  try{
+    if(localStorage.getItem('tapojyotibasu_liked')==='1') likeBtn.classList.add('liked');
+  }catch(e){}
+  likeBtn.addEventListener('click',()=>{
+    likeBtn.classList.toggle('liked');
+    try{ localStorage.setItem('tapojyotibasu_liked', likeBtn.classList.contains('liked') ? '1':'0'); }catch(e){}
+  });
+
+  // easter egg: Up Up Down Down Left
+  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft'];
+  let progress = 0;
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === seq[progress]){
+      progress++;
+      if(progress === seq.length){
+        const toast = document.getElementById('eggToast');
+        toast.classList.add('show');
+        setTimeout(()=>toast.classList.remove('show'), 2600);
+        progress = 0;
+      }
+    } else {
+      progress = (e.key === seq[0]) ? 1 : 0;
+    }
+  });
+</script>
+</body>
+</html>
